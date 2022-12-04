@@ -27,7 +27,15 @@ const QuoteList = (props) => {
     // todo 1: update the url to ascending-sort  -> programmatically navigation -> useHistory
     // history.push() -> re-render this component which match /quotes route
     // push a page -> React router see the history has changed -> re-render the component that match the route
-    history.push("/quotes?sort=" + (isSortAscending ? "desc" : "asc"));
+
+    // history.push(
+    //   `${location.pathname}?sort=${isSortAscending ? "desc" : "asc"}`
+    // );
+
+    history.push({
+      pathname: location.pathname,
+      search: `sort=${isSortAscending ? "desc" : "asc"}`,
+    });
   };
 
   const sortedQuotes = sortQuotes(props.quotes, isSortAscending);
